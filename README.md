@@ -1,139 +1,63 @@
-# 自主代理系统 (Autonomous Agent Demo)
+# 🎮 2048 网页游戏
 
-一个简化版的自主代理系统，能够自动分解任务、执行步骤并持久化状态。
+经典的 2048 滑块益智游戏网页版实现。
 
-## 特性
-
-- **自动任务分解**: 将复杂任务分解为可执行步骤
-- **工具调用**: 支持 read_file、write_file、run_bash 三个基础工具
-- **状态持久化**: 自动保存执行状态，支持断点恢复
-- **API 兼容**: 使用 OpenAI SDK，兼容 GLM、Claude 等 API
-
-## 项目结构
-
-```
-autonomous-agent-demo/
-├── agent.py      # 核心代理逻辑
-├── client.py     # API 客户端封装
-├── tools.py      # 工具定义和执行
-├── state.py      # 状态管理
-├── main.py       # 主程序入口
-├── requirements.txt
-├── .env.example  # 环境变量示例
-└── README.md
-```
-
-## 快速开始
-
-### 1. 安装依赖
+## 🎯 快速开始
 
 ```bash
-pip install -r requirements.txt
+# 进入游戏目录
+cd game
+
+# 在浏览器中打开
+open index.html  # macOS
+# 或
+xdg-open index.html  # Linux
+# 或直接双击 index.html 文件
 ```
 
-### 2. 配置环境变量
+## 🎮 游戏规则
 
-```bash
-# 复制示例文件
-cp .env.example .env
+1. 使用**方向键**（↑ ↓ ← →）移动所有方块
+2. 相同数字的方块碰撞时会**合并**
+3. 目标是合并出 **2048** 或更高的数字！
 
-# 编辑 .env 文件，填入你的 API 配置
-# 支持 OpenAI、GLM、Claude 等 API
+## 📁 项目结构
+
+```
+2048-game/
+├── game/              # 游戏文件
+│   ├── index.html    # 游戏主页面
+│   ├── style.css     # 样式
+│   ├── game.js       # 游戏逻辑
+│   └── README.md     # 详细说明
+├── agent.py          # 自主代理核心
+├── client.py         # API 客户端
+├── tools.py          # 工具定义
+├── state.py          # 状态管理
+└── main.py           # CLI 入口
 ```
 
-### 3. 运行代理
+## ✨ 游戏特性
 
-```bash
-# 开始新任务
-python main.py --task "创建一个简单的 Python 项目"
+- ✅ 完整的 2048 游戏逻辑
+- ✅ 流畅的动画效果
+- ✅ 分数记录和最高分
+- ✅ 响应式设计
+- ✅ 触摸屏支持
+- ✅ 游戏结束检测
 
-# 从断点恢复
-python main.py --resume
+## 🛠️ 技术栈
 
-# 查看状态
-python main.py --status
+- HTML5 + CSS3 + JavaScript
+- 自主代理系统（GLM 驱动）
 
-# 重置状态
-python main.py --reset
-```
+## 📝 开发说明
 
-## API 配置
+本项目由自主代理系统创建，基于：
+- **模型**: 智谱 GLM-4-flash
+- **框架**: 自主代理 Demo
+- **路径**: ~/BEN/AI/2048-game
 
-### OpenAI 官方 API
+---
 
-```env
-OPENAI_API_KEY=sk-your-api-key-here
-OPENAI_MODEL=gpt-4o
-```
-
-### 智谱 GLM API
-
-```env
-OPENAI_API_KEY=your_glm_api_key
-OPENAI_BASE_URL=https://open.bigmodel.cn/api/paas/v4
-OPENAI_MODEL=glm-4-flash
-```
-
-### Claude API (通过 OpenAI 兼容接口)
-
-```env
-OPENAI_API_KEY=your_claude_api_key
-OPENAI_BASE_URL=https://api.anthropic.com/v1
-OPENAI_MODEL=claude-3-5-sonnet-20241022
-```
-
-## 示例任务
-
-```bash
-# 创建简单的 Python 项目
-python main.py --task "创建一个 Python 项目，包含 README.md、main.py 和 requirements.txt"
-
-# 创建 Web 应用
-python main.py --task "创建一个 Flask 应用，包含首页路由"
-
-# 创建工具
-python main.py --task "创建一个文件批量重命名工具"
-```
-
-## 工作原理
-
-1. **任务理解**: 代理接收任务描述
-2. **自动规划**: LLM 将任务分解为具体步骤
-3. **工具调用**: 代理调用工具执行每个步骤
-4. **状态保存**: 每步执行后保存状态到 JSON 文件
-5. **断点恢复**: 支持从任意步骤恢复执行
-
-## 可用工具
-
-- `read_file`: 读取文件内容
-- `write_file`: 写入文件内容
-- `run_bash`: 执行 bash 命令
-
-## 状态文件
-
-执行状态保存在 `agent_state.json`，包含：
-
-```json
-{
-  "task": "原始任务描述",
-  "plan": ["步骤1", "步骤2", ...],
-  "current_step": 0,
-  "completed_steps": [],
-  "history": [...],
-  "status": "planning|executing|completed|failed"
-}
-```
-
-## 技术栈
-
-- Python 3.8+
-- OpenAI SDK
-- python-dotenv
-
-## License
-
-MIT
-
-## 参考
-
-基于 [Claude Autonomous Coding](https://github.com/anthropics/claude-code-examples/tree/main/autonomous-coding) 简化实现。
+*Created by Autonomous Agent with ❤️*

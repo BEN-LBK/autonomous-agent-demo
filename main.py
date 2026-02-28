@@ -11,7 +11,7 @@
 
 import argparse
 import sys
-from agent import AutonomousAgent
+from agent import Agent
 
 
 def main():
@@ -56,15 +56,15 @@ def main():
     args = parser.parse_args()
 
     # 创建代理实例
-    agent = AutonomousAgent()
+    agent = Agent()
 
     try:
         if args.task:
             # 开始新任务
-            agent.run(args.task)
+            agent.start(args.task)
         elif args.resume:
             # 从断点恢复
-            agent.resume()
+            agent.run()
         elif args.status:
             # 查看状态
             agent.show_status()
